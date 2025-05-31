@@ -1,0 +1,92 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f7fc;
+    margin: 0; padding: 0;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.venue-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 20px 40px;
+}
+
+.venue-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    max-width: 300px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.venue-card:hover {
+    transform: translateY(-5px);
+}
+
+.venue-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.venue-card h2 {
+    margin: 10px 15px;
+    font-weight: 700;
+}
+
+.venue-card p {
+    margin: 0 15px 15px;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.btn {
+    display: block;
+    margin: 0 15px 15px;
+    padding: 10px 0;
+    text-align: center;
+    background: #0052cc;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background: #003d99;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto 40px;
+    background: white;
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+form button {
+    width: 100%;
+    background: #0052cc;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background: #003d99;
+}
