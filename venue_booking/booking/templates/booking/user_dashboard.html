@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>User Dashboard</h1>
+
+    <h2>Pending Booking Requests</h2>
+    {% if pending_requests %}
+    <ul>
+        {% for req in pending_requests %}
+            <li>{{ req.venue.name }} on {{ req.event_date }} ({{ req.start_time }} - {{ req.end_time }})</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No pending booking requests.</p>
+    {% endif %}
+
+    <h2>Approved Bookings</h2>
+    {% if approved_bookings %}
+    <ul>
+        {% for booking in approved_bookings %}
+            <li>
+                {{ booking.venue.name }} on {{ booking.event_date }} ({{ booking.start_time }} - {{ booking.end_time }})
+                {% if not booking.is_registered %}
+                    - <a href="{% url 'booking:registration' booking.id %}">Register Now</a>
+                {% else %}
+                    - Registered
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No approved bookings.</p>
+    {% endif %}
+
+    <p><a href="{% url 'booking:venue_list' %}">Back to venues</a></p>
+</body>
+</html>
