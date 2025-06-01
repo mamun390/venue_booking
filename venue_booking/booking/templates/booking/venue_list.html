@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Event Venues</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Our Event Venues</h1>
+    <div class="venue-grid">
+        {% for venue in venues %}
+        <div class="venue-card">
+            <img src="{{ venue.image.url }}" alt="{{ venue.name }}">
+            <h2>{{ venue.name }}</h2>
+            <p>Capacity: {{ venue.capacity }}</p>
+            <p>{{ venue.description|truncatewords:20 }}</p>
+            <a href="{% url 'booking:booking_request' venue.id %}" class="btn">Request Booking</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
