@@ -1,0 +1,15 @@
+<h2>Approved Bookings</h2>
+<ul>
+{% for booking in approved_bookings %}
+    <li>
+        {{ booking.venue.name }} on {{ booking.event_date }} from {{ booking.start_time }} to {{ booking.end_time }}
+        {% if not booking.is_registered %}
+            - <a href="{% url 'booking:registration' booking.id %}">Register Now</a>
+        {% else %}
+            - Registered
+        {% endif %}
+    </li>
+{% empty %}
+    <li>No approved bookings.</li>
+{% endfor %}
+</ul>

@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Admin Booking Requests</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Admin Dashboard - Booking Requests</h1>
+    <table border="1" cellpadding="10" cellspacing="0" style="margin:auto; width:90%;">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Venue</th>
+                <th>Date</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Message</th>
+                <th>Approved</th>
+                <th>Paid</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.user_name }}</td>
+                <td>{{ booking.user_email }}</td>
+                <td>{{ booking.venue.name }}</td>
+                <td>{{ booking.event_date }}</td>
+                <td>{{ booking.start_time }}</td>
+                <td>{{ booking.end_time }}</td>
+                <td>{{ booking.message|default:"-" }}</td>
+                <td>{{ booking.is_approved }}</td>
+                <td>{{ booking.is_paid }}</td>
+                <td>
+                    <form method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="booking_id" value="{{ booking.id }}">
+                        {% if not booking.is_approved %}
+                            <button type="submit" name="action" value="approve">Approve</button>
+                        {% else %}
+                            <button type="submit" name="action" value="unapprove">Unapprove</button>
+                        {% endif %}
+                    </form>
+                </td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="10">No booking requests found.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <p><a href="{% url 'booking:venue_list' %}">Back to venues</a></p>
+</body>
+</html>
